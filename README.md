@@ -79,6 +79,96 @@ select *
 from movies
 where title like("%WALL-%")
 ```
+## Lesson 4: Filtering and sorting Query results
+1. List all directors of Pixar movies (alphabetically), without duplicates:
+```sql
+select distinct director
+from movies
+order by director asc
+```
+2. List the last four Pixar movies released (ordered from most recent to least):
+```sql
+select *
+from movies
+order by year desc
+limit 4
+```
+3. List the first five Pixar movies sorted alphabetically:
+```sql
+select title 
+from movies
+order by title asc
+limit 5 
+```
+4 List the next five Pixar movies sorted alphabetically:
+```sql
+select title 
+from movies
+order by title asc
+limit 5 offset 5
+```
+## Lesson 5: Simple SELECT Queries
+1. List all the Canadian cities and their populations:
+```sql
+select city, population
+from north_american_cities 
+where country = 'Canada'
+```
+2. Order all the cities in the United States by their latitude from north to south:
+```sql
+select city
+from north_american_cities
+where country ='United States'
+order by latitude desc
+```
+3. List all the cities west of Chicago, ordered from west to east:
+```sql
+select city
+from north_american_cities
+where longitude < -87.629798
+order by longitude
+```
+4. List the two largest cities in Mexico (by population):
+```sql
+select city
+from north_american_cities
+where country ='Mexico'
+order by population desc
+limit 2
+```
+5. List the third and fourth largest cities (by population) in the United States and their population:
+```sql
+select city, population
+from north_american_cities
+where country = 'United States'
+order by population desc
+limit 2 offset 2
+```
+## Lesson 6: Multi-table queries with JOINs
+1. Find the domestic and international sales for each movie:
+```sql
+select title, domestic_sales, international_sales
+from boxoffice b
+inner join movies m
+on b.movie_id = m.id
+```
+2. Show the sales numbers for each movie that did better internationally rather than domestically:
+```sql
+select title, domestic_sales, international_sales
+from boxoffice b
+inner join movies m
+on b.movie_id = m.id
+where international_sales > domestic_sales
+```
+3. List all the movies by their ratings in descending order:
+```sql
+select title
+from movies m
+inner join boxoffice b
+on m.id = b.movie_id
+order by b.rating desc
+```
+## Lesson 7: OUTER JOINs
 
 
 
