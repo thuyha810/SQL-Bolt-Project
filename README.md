@@ -202,6 +202,16 @@ on b.building_name = e.building
 where building is null
 ```
 ## Lesson 9: Queries with expressions
+1. List all movies and their combined sales in millions of dollars
+```sql
+select m.title, (b.domestic_sales + b.international_sales)/1000000 as Combined_Sales
+from boxoffice b
+inner join movies m
+on m.id = b.movie_id
+```
+2. List all movies and their ratings in percent
+```sql
+
 
 
 
