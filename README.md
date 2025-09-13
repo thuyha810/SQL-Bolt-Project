@@ -169,6 +169,42 @@ on m.id = b.movie_id
 order by b.rating desc
 ```
 ## Lesson 7: OUTER JOINs
+1. Find the list of all buildings that have employees:
+```sql
+select distinct building
+from employees
+```
+2. Find the list of all buildings and their capacity
+```sql
+select distinct building_name, capacity 
+from buildings
+```
+3. List all buildings and the distinct employee roles in each building (including empty buildings)
+```sql 
+select b.building_name, e.role
+from buildings b
+left join employees e
+on b.building_name = e.building
+```
+## Lesson 8: A short note on NULLs
+1. Find the name and role of all employees who have not been assigned to a building
+```sql
+select name, role
+from employees
+where building is null
+```
+2. Find the names of the buildings that hold no employees
+```sql
+select b.building_name
+from buildings b
+left join employees e
+on b.building_name = e.building
+where building is null
+```
+## Lesson 9: Queries with expressions
+
+
+
 
 
 
