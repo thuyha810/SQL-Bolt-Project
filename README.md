@@ -211,6 +211,37 @@ on m.id = b.movie_id
 ```
 2. List all movies and their ratings in percent
 ```sql
+select distinct m.title, (round((b.rating/10),2))*100 as Rating 
+from movies m 
+left join boxoffice b
+on m.id = b.movie_id 
+order by rating desc
+```
+3. List all movies that were released on even number years
+```sql
+select title, year 
+from movies
+where year % 2 = 0
+```
+## Lesson 10: Queries with aggregates (Pt. 1)
+1. Find the longest time that an employee has been at the studio
+```sql
+select max(years_employed)
+from employees
+```
+2. For each role, find the average number of years employed by employees in that role
+``sql
+select distinct role, avg(years_employed)
+from employees
+group by role
+order by years_employed desc;
+```
+3. Find the total number of employee years worked in each building
+```sql
+select building, sum(years_employed)
+from employees 
+group by building
+```
 
 
 
